@@ -255,7 +255,25 @@
     document.body.style.overflow = "";
   }
 
+  // Solo un teléfono visible a la vez: cualquier otro toque lo vuelve a cubrir
+  let telVisible = null;
+  function cubrirTelefono() {
+    if (!telVisible) return;
+    if (telVisible.isConnected) {
+      const btn = document.createElement("button");
+      btn.className = "tel-btn";
+      btn.dataset.tel = telVisible.dataset.tel;
+      btn.textContent = "📞 Ver teléfono";
+      telVisible.replaceWith(btn);
+    }
+    telVisible = null;
+  }
+
   document.addEventListener("click", (ev) => {
+    const link = ev.target.closest(".tel-link");
+    if (link && link === telVisible) return; // tocar el número: llamar
+    cubrirTelefono();
+
     const btnTel = ev.target.closest(".tel-btn");
     if (btnTel) {
       const num = telefonos.get(btnTel.dataset.tel);
@@ -263,15 +281,17 @@
       const a = document.createElement("a");
       a.className = "tel-link";
       a.href = "tel:" + num;
+      a.dataset.tel = btnTel.dataset.tel;
       a.textContent = "📞 Llamar · " + formatoTel(num);
       btnTel.replaceWith(a);
+      telVisible = a;
       return;
     }
     const celda = ev.target.closest(".dia[data-dia]");
     if (celda) { abrirHoja(parseInt(celda.dataset.dia, 10)); return; }
     if (ev.target.id === "velo" || ev.target.closest("#cerrar")) cerrarHoja();
   });
-  document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") cerrarHoja(); });
+  document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") { cubrirTelefono(); cerrarHoja(); } });
 
   /* ───────────── Arranque ───────────── */
   function mostrarError(msg) {
