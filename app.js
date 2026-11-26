@@ -105,12 +105,12 @@
     document.querySelector('meta[name="theme-color"]').setAttribute("content", tema.colores["--bg"]);
     $("escena").innerHTML = tema.escena ? tema.escena() : "";
     $("adornos").innerHTML = tema.adornos ? tema.adornos() : "";
-    $("luces").innerHTML = tema.luces ? lucesSVG() : "";
+    $("luces").innerHTML = tema.luces ? lucesSVG(Array.isArray(tema.luces) ? tema.luces : null) : "";
     iniciarParticulas(tema.particulas);
     return tema;
   }
-  function lucesSVG() {
-    const colores = ["#f4b6c0", "#a8d8c4", "#f7d58c", "#c8bbea", "#b9d4f0"];
+  function lucesSVG(propios) {
+    const colores = propios || ["#f4b6c0", "#a8d8c4", "#f7d58c", "#c8bbea", "#b9d4f0"];
     const n = 22; let focos = ""; let cuerda = "M0 6";
     for (let i = 0; i <= n; i++) {
       const x = (i / n) * 1000, y = i % 2 ? 16 : 8;

@@ -6,8 +6,8 @@
  */
 window.TEMAS = {
 
-  /* ───────────────────────── NAVIDAD ───────────────────────── */
-  navidad: {
+  /* ─────────────── NAVIDAD ROSA (diseño original) ─────────────── */
+  navidad_rosa: {
     colores: {
       "--bg": "#fbf5ef",
       "--bg-2": "#f3eef8",
@@ -161,6 +161,33 @@ window.TEMAS = {
     },
     // Serie de luces que cruza la parte superior
     luces: true
+  },
+
+  /* ─────────────── NAVIDAD · NOCHE DE BELÉN (actual) ─────────────── */
+  navidad: {
+    colores: {
+      "--bg": "#eef1f8", "--bg-2": "#e8e4f3", "--ink": "#2f3a56", "--muted": "#6b7592",
+      "--card": "#fbfaf7", "--line": "#dfe3ef", "--accent": "#7f93cc", "--accent-soft": "#ecd3de",
+      "--accent-2": "#9fb4e0", "--gold": "#e8c77a",
+      "--wd-0": "#f8efd7", /* lunes */
+      "--wd-1": "#ece7f6", /* martes */
+      "--wd-2": "#f5e6ee", /* miércoles */
+      "--wd-3": "#e1eef4", /* jueves */
+      "--wd-4": "#f8efd7", /* viernes */
+      "--wd-5": "#e8e4f3", /* sábado */
+      "--wd-6": "#e3e8f6"  /* domingo */
+    },
+    frase: "Que la luz de Belén ilumine cada mesa compartida ⭐",
+    particulas: "nieve",
+    escena: function () {
+      return window.TEMAS.navidad_rosa.escena().replace(/#cfe8dc/g, "#d9dff0").replace(/#bfe0d0/g, "#c9d2ea");
+    },
+    adornos: function () {
+      return window.TEMAS.navidad_rosa.adornos()
+        .replace(/#f4b6c0/g, "#e4bfd0").replace(/#a8d8c4/g, "#9fb4e0")
+        .replace(/#c8bbea/g, "#c5bde8").replace(/#f7d58c/g, "#f0d38a");
+    },
+    luces: ["#f0d38a", "#c5bde8", "#9fb4e0", "#e4bfd0", "#fffaf0"]
   },
 
   /* ─────────────── GENERAL (por si el tema no existe) ─────────────── */

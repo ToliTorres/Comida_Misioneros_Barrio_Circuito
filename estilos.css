@@ -16,7 +16,7 @@ body {
   background:
     radial-gradient(60vmax 40vmax at 0% 0%, var(--accent-soft) 0%, transparent 60%),
     radial-gradient(50vmax 40vmax at 100% 30%, var(--bg-2) 0%, transparent 60%),
-    radial-gradient(60vmax 40vmax at 30% 100%, #e3f3ec 0%, transparent 60%),
+    radial-gradient(60vmax 40vmax at 30% 100%, var(--bg-2) 0%, transparent 60%),
     var(--bg);
   background-attachment: fixed;
   -webkit-tap-highlight-color: transparent;
@@ -125,7 +125,7 @@ h1 em { font-style: italic; font-weight: 500; color: var(--accent); }
   padding: 8px 14px; min-height: 38px; border-radius: 999px; font-weight: 800; font-size: .88rem;
   text-decoration: none; transition: transform .12s ease; }
 .tel-btn { background: #fff; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); }
-.tel-link { background: var(--accent-2); color: #1f3b31; animation: aparece .25s ease; }
+.tel-link { background: var(--accent-2); color: var(--ink); animation: aparece .25s ease; }
 .tel-btn:active, .tel-link:active { transform: scale(.95); }
 @keyframes aparece { from { opacity: 0; transform: scale(.9); } to { opacity: 1; transform: none; } }
 
